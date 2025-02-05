@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Energies {
+  id         Int        @id @default(autoincrement())
+  type       String
+  unit       String
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  DataLogs   DataLogs[]
+}
+
+model DataLogs {
+  id         Int      @id @default(autoincrement())
+  type_id    Int
+  energy     Energies @relation(fields: [type_id], references: [id])
+  amount     Float
+  source     String
+  created_at DateTime @default(now())
+}
