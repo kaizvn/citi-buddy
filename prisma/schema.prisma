@@ -14,9 +14,10 @@ model Energies {
   id         Int        @id @default(autoincrement())
   type       String
   unit       String
+  icon       String?
   created_at DateTime   @default(now())
   updated_at DateTime   @updatedAt
-  DataLogs   DataLogs[]
+  dataLogs   DataLogs[]
 }
 
 model DataLogs {
