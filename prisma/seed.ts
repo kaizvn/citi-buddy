@@ -3,21 +3,21 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
-  const energies = [
+  const utilities = [
     { id: 1, type: 'water supply', unit: 'm3', icon: 'droplet' },
     { id: 2, type: 'electricity', unit: 'kWh', icon: 'zap' },
     { id: 3, type: 'waste', unit: 'kg', icon: 'trash' },
   ]
 
-  for (const energy of energies) {
-    await prisma.energies.upsert({
-      where: { id: energy.id },
-      update: energy,
-      create: energy,
+  for (const utility of utilities) {
+    await prisma.utility.upsert({
+      where: { id: utility.id },
+      update: utility,
+      create: utility,
     })
   }
 
-  console.log('Seed data for energies model created.')
+  console.log('Seed data for Utilities model created.')
 
   const data = [
     {
@@ -95,7 +95,7 @@ async function main() {
   ]
 
   for (const log of data) {
-    await prisma.dataLogs.upsert({
+    await prisma.dataLog.upsert({
       where: { id: log.id },
       update: log,
       create: log,

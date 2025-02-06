@@ -1,5 +1,4 @@
 // Singleton pattern to avoid multiple instances of PrismaClient
-
 import { PrismaClient } from '@prisma/client'
 
 let prisma: PrismaClient

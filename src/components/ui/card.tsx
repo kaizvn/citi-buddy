@@ -1,6 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 
 import { cn } from '@/lib/utils'
+import { DynamicIcon, IconName } from 'lucide-react/dynamic'
 
 const Card = React.forwardRef<
   HTMLDivElement,
@@ -11,11 +12,12 @@ const Card = React.forwardRef<
     className={cn(
       'rounded-lg border bg-card text-card-foreground',
       className,
-      isSelected ? 'shadow-lg border-2' : 'shadow-sm'
+      isSelected ? 'shadow-lg ring-2 ring-blue-500' : 'shadow-sm'
     )}
     {...props}
   />
 ))
+
 Card.displayName = 'Card'
 
 const CardHeader = React.forwardRef<
@@ -77,4 +79,43 @@ const CardFooter = React.forwardRef<
 ))
 CardFooter.displayName = 'CardFooter'
 
+export type StyledCardProps = {
+  title: string
+  icon: IconName
+  onClick?: () => void
+  isSelected?: boolean
+  children?: React.ReactNode
+}
+
+const StyledCard: React.FC<StyledCardProps> = ({
+  title,
+  icon,
+  onClick,
+  isSelected,
+  children,
+}) => {
+  return (
+    <Card
+      className="cursor-pointer hover:bg-muted/50 transition-colors"
+      onClick={onClick}
+      isSelected={isSelected}
+    >
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium capitalize">
+          {title}
+        </CardTitle>
+        {!!icon && (
+          <DynamicIcon
+            name={icon as IconName}
+            className="h-4 w-4 text-muted-foreground"
+          />
+        )}
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+    </Card>
+  )
+}
+
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+
+export default StyledCard

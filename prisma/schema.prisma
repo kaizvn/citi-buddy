@@ -10,20 +10,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Energies {
-  id         Int        @id @default(autoincrement())
+model Utility {
+  id         Int       @id @default(autoincrement())
   type       String
   unit       String
   icon       String?
-  created_at DateTime   @default(now())
-  updated_at DateTime   @updatedAt
-  dataLogs   DataLogs[]
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  dataLogs   DataLog[]
 }
 
-model DataLogs {
+model DataLog {
   id         Int      @id @default(autoincrement())
   type_id    Int
-  energy     Energies @relation(fields: [type_id], references: [id])
+  utility    Utility  @relation(fields: [type_id], references: [id])
   amount     Float
   source     String
   date       String

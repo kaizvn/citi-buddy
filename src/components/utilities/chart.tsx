@@ -1,4 +1,5 @@
 'use client'
+import React from 'react'
 import {
   Line,
   LineChart,
@@ -13,11 +14,11 @@ interface ChartData {
   value: number
 }
 
-interface EnergyChartProps {
+interface UtilityChartProps {
   data: ChartData[]
 }
 
-export function EnergyChart({ data }: EnergyChartProps) {
+const UtilityChart: React.FC<UtilityChartProps> = ({ data }) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart data={data}>
@@ -29,3 +30,5 @@ export function EnergyChart({ data }: EnergyChartProps) {
     </ResponsiveContainer>
   )
 }
+
+export default UtilityChart
