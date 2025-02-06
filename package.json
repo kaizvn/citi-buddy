@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "postinstall": "prisma generate",
+    "prisma:seed": "prisma db seed",
+    "vercel-build": "prisma generate && prisma db seed && prisma migrate deploy && next build",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@prisma/client": "^6.3.1",

@@ -10,6 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model City {
+  id          Int       @id @default(autoincrement())
+  name        String
+  code        String
+  countryCode String
+  phoneCode   Int
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @updatedAt
+  DataLog     DataLog[]
+}
+
 model Utility {
   id         Int       @id @default(autoincrement())
   type       String
@@ -27,5 +38,7 @@ model DataLog {
   amount     Float
   source     String
   date       String
+  city_id    Int      @default(1)
+  city       City     @relation(fields: [city_id], references: [id])
   created_at DateTime @default(now())
 }

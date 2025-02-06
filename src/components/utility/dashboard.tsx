@@ -6,7 +6,7 @@ import useSWR from 'swr'
 import { UtilityResponse } from '@/app/api/utility/types'
 import React, { useState } from 'react'
 import UtilityDetails from './details'
-import CreateNewLog from '../logs/create'
+import CreateNewLog from '../log/create'
 import { fetcher } from '@/lib/utils'
 
 const UtilitiesDashboard: React.FC = () => {

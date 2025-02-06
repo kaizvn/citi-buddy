@@ -22,8 +22,8 @@ const UtilityDetails: React.FC<{ card: UtilityResponse | undefined }> = ({
         content: <UtilityChart data={data} />,
       },
       {
-        value: 'data',
-        label: 'Data',
+        value: 'logs',
+        label: 'Logs',
         content: (
           <div className="max-w-96 m-auto">
             <div className="mb-4 flex flex-col-reverse">

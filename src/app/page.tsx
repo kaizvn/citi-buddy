@@ -1,4 +1,4 @@
-import UtilitiesDashboard from '@/components/utilities/dashboard'
+import UtilitiesDashboard from '@/components/utility/dashboard'
 
 export default function Home() {
   return (

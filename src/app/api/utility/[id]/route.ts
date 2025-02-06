@@ -1,17 +1,20 @@
 import prisma from '@/lib/prisma'
 import { UtilityLogResponse } from '../types'
+import { type NextRequest } from 'next/server'
 
 export async function GET(
-  request: Request,
+  request: NextRequest,
   { params }: { params: Promise<{ id: number }> }
 ) {
   try {
+    const searchParams = request.nextUrl.searchParams
+    const cityId = parseInt(searchParams.get('city_id') ?? '1')
     const id = Number((await params).id)
 
     const dataLogs = await prisma.dataLog.groupBy({
       by: ['date'],
       orderBy: { date: 'asc' },
-      where: { type_id: id },
+      where: { type_id: id, city_id: cityId },
       _sum: { amount: true },
     })
 

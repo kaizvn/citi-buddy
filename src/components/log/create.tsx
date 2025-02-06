@@ -1,9 +1,23 @@
 import { PlusCircle } from 'lucide-react'
 import Button from '../ui/button'
 import StyledDialog from '../ui/dialog'
+import StyledTabs from '../ui/tab'
+import CreateDataLogForm from './create-manually'
 
 const CreateNewLog = () => {
-  const onDataCreated = () => {}
+  const tabList = [
+    {
+      value: 'manually',
+      label: 'Manually Inpur',
+      content: <CreateDataLogForm />,
+    },
+    {
+      value: 'upload',
+      label: 'Upload CSV',
+      content: <div className="max-w-96 m-auto">coming soon</div>,
+    },
+  ]
+
   return (
     <StyledDialog
       title="Add New Utility Data"
@@ -13,12 +27,7 @@ const CreateNewLog = () => {
         </Button>
       }
     >
-      this is the main content
-      <div>
-        <Button className="Button green" onSubmit={() => onDataCreated()}>
-          Save changes
-        </Button>
-      </div>
+      <StyledTabs tabList={tabList} />
     </StyledDialog>
   )
 }
