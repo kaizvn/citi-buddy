@@ -26,5 +26,6 @@ model DataLogs {
   energy     Energies @relation(fields: [type_id], references: [id])
   amount     Float
   source     String
+  date       String
   created_at DateTime @default(now())
 }

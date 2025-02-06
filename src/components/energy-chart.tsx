@@ -1,5 +1,12 @@
-"use client"
-import { Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+'use client'
+import {
+  Line,
+  LineChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts'
 
 interface ChartData {
   date: string
@@ -17,9 +24,8 @@ export function EnergyChart({ data }: EnergyChartProps) {
         <XAxis dataKey="date" />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="value" stroke="#8884d8" />
+        <Line type="monotone" dataKey="total" stroke="#8884d8" />
       </LineChart>
     </ResponsiveContainer>
   )
 }
-
