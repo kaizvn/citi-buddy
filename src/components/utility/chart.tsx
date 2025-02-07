@@ -1,5 +1,6 @@
 'use client'
-import { UtilityLogResponse } from '@/app/api/utilities/types'
+
+import { UtilityLogResponse } from '@/app/api/_utils/responseTypes'
 import React from 'react'
 import {
   Line,

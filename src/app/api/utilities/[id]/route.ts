@@ -1,6 +1,6 @@
 import prisma from '@/lib/prisma'
-import { UtilityLogResponse } from '../types'
-import { type NextRequest } from 'next/server'
+import { NextResponse, type NextRequest } from 'next/server'
+import { UtilityLogResponse } from '../../_utils/responseTypes'
 
 type DataLogQuery = {
   type_id: number
@@ -47,11 +47,10 @@ export async function GET(
       dataLogs,
     })
   } catch (error) {
-    let errorMessage = 'Failed to do something exceptional'
-    if (error instanceof Error) {
-      errorMessage = error.message
-    }
-
-    return new Response(errorMessage, { status: 500 })
+    console.error('Error creating DataLog:', error)
+    return NextResponse.json(
+      { error: 'Error creating DataLog' },
+      { status: 500 }
+    )
   }
 }

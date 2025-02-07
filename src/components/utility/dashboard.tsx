@@ -3,13 +3,16 @@
 import StyledCard from '@/components/ui/card'
 import { type IconName } from 'lucide-react/dynamic'
 import useSWR from 'swr'
-import { UtilityResponse } from '@/app/api/utilities/types'
+
 import React, { useContext, useState } from 'react'
 import UtilityDetails from './details'
 import CreateNewLog from '../log/create'
 import { fetcher } from '@/lib/utils'
 import { AppContext } from '../context'
-import { City } from '@prisma/client'
+import {
+  GetCityByIDResponse,
+  UtilityResponse,
+} from '@/app/api/_utils/responseTypes'
 
 const UtilitiesDashboard: React.FC = () => {
   const [selectedUtilityID, setSelectedUtilityID] = useState<number | null>(
@@ -21,7 +24,7 @@ const UtilitiesDashboard: React.FC = () => {
   }
 
   const { cityID } = useContext(AppContext)
-  const { data }: { data: City & { utilities: UtilityResponse[] } } = useSWR(
+  const { data }: { data: GetCityByIDResponse } = useSWR(
     `/api/cities/${cityID}`,
     fetcher
   )

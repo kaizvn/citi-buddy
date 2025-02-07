@@ -4,13 +4,14 @@ import useSWR from 'swr'
 import StyledTabs, { TabItem } from '../ui/tab'
 import { fetcher } from '@/lib/utils'
 import { AppContext } from '../context'
-import { Utility } from '@prisma/client'
-import { UtilityLogResponse } from '@/app/api/utilities/types'
+import { GetUtilityByIDResponse } from '@/app/api/_utils/responseTypes'
 
 const UtilityDetails: React.FC<{ id: number | undefined }> = ({ id }) => {
   const { cityID } = useContext(AppContext)
-  const { data }: { data: Utility & { dataLogs: UtilityLogResponse[] } } =
-    useSWR(`/api/utilities/${id}?city_id=${cityID}`, fetcher)
+  const { data }: { data: GetUtilityByIDResponse } = useSWR(
+    `/api/utilities/${id}?city_id=${cityID}`,
+    fetcher
+  )
 
   const tabList: TabItem[] = useMemo(() => {
     if (!data || !id) {

@@ -8,7 +8,7 @@ const CreateNewLog = () => {
   const tabList = [
     {
       value: 'manually',
-      label: 'Manually Inpur',
+      label: 'Manually Input',
       content: <CreateDataLogForm />,
     },
     {
