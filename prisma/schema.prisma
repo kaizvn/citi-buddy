@@ -16,6 +16,7 @@ model City {
   code        String
   countryCode String
   phoneCode   Int
+  population  Int
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
   DataLog     DataLog[]

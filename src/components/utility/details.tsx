@@ -1,25 +1,29 @@
-import React, { useMemo } from 'react'
+import React, { useContext, useMemo } from 'react'
 import UtilityChart from './chart'
-import { UtilityResponse } from '@/app/api/utility/types'
 import useSWR from 'swr'
 import StyledTabs, { TabItem } from '../ui/tab'
 import { fetcher } from '@/lib/utils'
+import { AppContext } from '../context'
+import { Utility } from '@prisma/client'
+import { UtilityLogResponse } from '@/app/api/utilities/types'
 
-const UtilityDetails: React.FC<{ card: UtilityResponse | undefined }> = ({
-  card,
-}) => {
-  const { data } = useSWR(`/api/utility/${card?.id}`, fetcher)
+const UtilityDetails: React.FC<{ id: number | undefined }> = ({ id }) => {
+  const { cityID } = useContext(AppContext)
+  const { data }: { data: Utility & { dataLogs: UtilityLogResponse[] } } =
+    useSWR(`/api/utilities/${id}?city_id=${cityID}`, fetcher)
 
   const tabList: TabItem[] = useMemo(() => {
-    if (!data || !card) {
+    if (!data || !id) {
       return []
     }
+
+    const dataLogs = data.dataLogs ?? []
 
     return [
       {
         value: 'chart',
         label: 'Chart',
-        content: <UtilityChart data={data} />,
+        content: <UtilityChart data={dataLogs} />,
       },
       {
         value: 'logs',
@@ -27,11 +31,11 @@ const UtilityDetails: React.FC<{ card: UtilityResponse | undefined }> = ({
         content: (
           <div className="max-w-96 m-auto">
             <div className="mb-4 flex flex-col-reverse">
-              {data.map((item: { date: string; total: number }) => (
+              {dataLogs.map((item: { date: string; total: number }) => (
                 <div key={item.date} className="flex justify-between mt-0 mb-2">
                   <span>{item.date}</span>
                   <span>
-                    {item.total} {card?.unit ?? ''}
+                    {item.total} {data?.unit ?? ''}
                   </span>
                 </div>
               ))}
@@ -40,14 +44,14 @@ const UtilityDetails: React.FC<{ card: UtilityResponse | undefined }> = ({
         ),
       },
     ]
-  }, [card, data])
+  }, [id, data])
 
-  if (!data || !card) return null
+  if (!id || !tabList?.length) return null
 
   return (
     <details open className="shadow-md rounded-lg overflow-hidden">
-      <summary className="px-4 py-2 font-medium cursor-pointer">
-        {card.type} Consumption Details
+      <summary className="px-4 py-2 font-medium cursor-pointer capitalize">
+        {data.type} Consumption Details
       </summary>
       <div className="p-1">
         <StyledTabs tabList={tabList} />

@@ -11,7 +11,7 @@ const CreateDataLogForm: React.FC = () => {
   }
 
   return (
-    <div className="min-w-90">
+    <div className="w-full">
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="message">Message:</label>

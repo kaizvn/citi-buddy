@@ -1,4 +1,5 @@
 'use client'
+import { UtilityLogResponse } from '@/app/api/utilities/types'
 import React from 'react'
 import {
   Line,
@@ -9,13 +10,8 @@ import {
   YAxis,
 } from 'recharts'
 
-interface ChartData {
-  date: string
-  value: number
-}
-
 interface UtilityChartProps {
-  data: ChartData[]
+  data: UtilityLogResponse[]
 }
 
 const UtilityChart: React.FC<UtilityChartProps> = ({ data }) => {
