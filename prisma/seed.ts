@@ -42,7 +42,7 @@ async function main() {
   const data = [
     {
       id: 1,
-      type_id: 1,
+      utility_id: 1,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'integration',
@@ -51,7 +51,7 @@ async function main() {
     },
     {
       id: 2,
-      type_id: 2,
+      utility_id: 2,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'uploaded',
@@ -60,7 +60,7 @@ async function main() {
     },
     {
       id: 3,
-      type_id: 3,
+      utility_id: 3,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'manual',
@@ -69,7 +69,7 @@ async function main() {
     },
     {
       id: 4,
-      type_id: 1,
+      utility_id: 1,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'integration',
@@ -78,7 +78,7 @@ async function main() {
     },
     {
       id: 5,
-      type_id: 2,
+      utility_id: 2,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'uploaded',
@@ -87,7 +87,7 @@ async function main() {
     },
     {
       id: 6,
-      type_id: 3,
+      utility_id: 3,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'manual',
@@ -96,7 +96,7 @@ async function main() {
     },
     {
       id: 7,
-      type_id: 1,
+      utility_id: 1,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'integration',
@@ -105,7 +105,7 @@ async function main() {
     },
     {
       id: 8,
-      type_id: 2,
+      utility_id: 2,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'uploaded',
@@ -114,7 +114,7 @@ async function main() {
     },
     {
       id: 9,
-      type_id: 3,
+      utility_id: 3,
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'manual',

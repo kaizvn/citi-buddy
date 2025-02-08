@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 import { DynamicIcon, IconName } from 'lucide-react/dynamic'
 
 const Card = React.forwardRef<

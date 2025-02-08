@@ -1,29 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { parse } from 'csv-parse'
 import { Readable } from 'stream'
-import { z } from 'zod'
-import { prisma } from '@/libs'
-import { getLogTransformFunc } from '@/libs/utils'
-
-const RowSchema = z.object({
-  type_id: z.string().transform((val) => parseInt(val)),
-  amount: z.string().transform((val) => parseFloat(val)),
-  logged_date: z.string(),
-  city_id: z.string().transform((val) => parseInt(val)),
-})
-
-const getFieldMapperTransformer = (fieldMapping?: string) => {
-  if (!fieldMapping) {
-    return (val: unknown) => val
-  }
-
-  const fieldMapper: { [key: string]: string } = JSON.parse(fieldMapping)
-
-  return getLogTransformFunc(
-    ['type_id', 'amount', 'logged_date', 'city_id'],
-    fieldMapper
-  )
-}
+import { createNewLogFromRawData } from '@/services/servers/dataLog'
 
 const uploadHandler = async (request: NextRequest) => {
   const contentType = request.headers.get('content-type')
@@ -39,8 +17,11 @@ const uploadHandler = async (request: NextRequest) => {
       return NextResponse.json({ error: 'No file uploaded' }, { status: 400 })
     }
 
-    const fieldMapping = formData.get('fieldMapping') as string
-    const transformedLog = getFieldMapperTransformer(fieldMapping)
+    //todo: util from string to obj
+    const fieldMappingString = formData.get('fieldMapping') as string
+    const fieldMapper: { [key: string]: string } = fieldMappingString
+      ? JSON.parse(fieldMappingString)
+      : undefined
 
     const fileBuffer = await file.arrayBuffer()
     const fileStream = Readable.from(Buffer.from(fileBuffer))
@@ -52,18 +33,19 @@ const uploadHandler = async (request: NextRequest) => {
 
     let processedRows = 0
     let errorRows = 0
+    const cachedMetadataByUtilityID = {} // bad implementation, refactoring LogService later
 
-    for await (const row of fileStream.pipe(parser)) {
+    for await (const rawData of fileStream.pipe(parser)) {
       try {
-        const processedRow = transformedLog(row)
-        const validatedRow = RowSchema.parse(processedRow)
-
-        await prisma.dataLog.create({
-          data: { ...validatedRow, source: 'upload' },
+        await createNewLogFromRawData({
+          rawData,
+          fieldMapper,
+          cachedMetadataByUtilityID,
         })
+
         processedRows++
       } catch (error) {
-        console.error('Error processing row:', (error as Error).message)
+        console.error('Error processing row:', error as Error)
         errorRows++
       }
     }
@@ -77,12 +59,6 @@ const uploadHandler = async (request: NextRequest) => {
     console.error('Error processing CSV:', error)
     return NextResponse.json({ error: 'Error processing CSV' }, { status: 500 })
   }
-}
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
 }
 
 export default uploadHandler

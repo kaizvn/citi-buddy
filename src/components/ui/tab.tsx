@@ -1,4 +1,4 @@
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 import { Tabs } from 'radix-ui'
 import React from 'react'
 

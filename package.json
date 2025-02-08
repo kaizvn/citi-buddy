@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
     "prisma:seed": "prisma db seed",
     "vercel-build": "prisma db seed && next build",
     "dev": "next dev --turbopack",

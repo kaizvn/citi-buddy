@@ -10,9 +10,10 @@ import {
   CheckCircle,
 } from 'lucide-react'
 import Button from '../ui/button'
+import { isEmpty } from 'lodash/fp'
 
 type Metadata = {
-  key: string
+  name: string
   value: string
   unit?: string
 }
@@ -27,8 +28,8 @@ export function DataLogForm({ callback }: { callback?: () => void }) {
     const data = Object.fromEntries(formData)
 
     const formattedData = {
-      metadata: data.metadata ? JSON.stringify(metadata) : undefined,
-      type_id: parseInt(data.type_id as string),
+      metadata: isEmpty(metadata) ? undefined : JSON.stringify(metadata),
+      utility_id: parseInt(data.utility_id as string),
       amount: parseFloat(data.amount as string),
       source: 'manually',
       logged_date: data.logged_date,
@@ -59,7 +60,7 @@ export function DataLogForm({ callback }: { callback?: () => void }) {
   }
 
   const addMetadata = () => {
-    setMetadata([...metadata, { key: '', value: '' }])
+    setMetadata([...metadata, { name: '', value: '' }])
   }
 
   const updateMetadata = (
@@ -80,7 +81,7 @@ export function DataLogForm({ callback }: { callback?: () => void }) {
     <Form.Root className="space-y-8" onSubmit={handleSubmit}>
       <Form.Field
         className="grid grid-cols-4 items-center gap-4"
-        name="type_id"
+        name="utility_id"
       >
         <Form.Label className="text-right">Type</Form.Label>
         <Form.Control asChild>
@@ -194,9 +195,9 @@ export function DataLogForm({ callback }: { callback?: () => void }) {
             <input
               className="flex h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
               type="text"
-              placeholder="Key"
-              value={item.key}
-              onChange={(e) => updateMetadata(index, 'key', e.target.value)}
+              placeholder="Key Name"
+              value={item.name}
+              onChange={(e) => updateMetadata(index, 'name', e.target.value)}
             />
             <input
               className="flex h-9 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"

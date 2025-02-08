@@ -1,10 +1,10 @@
-import { prisma } from '@/libs'
 import { NextResponse } from 'next/server'
 import { DEFAULT_LIMIT_ITEMS } from '../_utils/constant'
+import UtilityService from '@/services/servers/utility'
 
 export async function GET() {
   try {
-    const utilities = await prisma.utility.findMany({
+    const utilities = await UtilityService.findMany({
       take: DEFAULT_LIMIT_ITEMS,
     })
     return Response.json(utilities)

@@ -1,9 +1,14 @@
+import { createNewLogFromRawData } from '@/services/servers/dataLog'
+import {
+  InputMetadata,
+  saveMetadataFromInput,
+} from '@/services/servers/metadata'
 import moment from 'moment'
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 
 const DataLogSchema = z.object({
-  type_id: z.number().int().positive(),
+  utility_id: z.number().int().positive(),
   amount: z.number().positive(),
   metadata: z
     .string()
@@ -43,18 +48,25 @@ const manualCreateHandler = async (request: NextRequest) => {
       )
     }
 
-    const { type_id, city_id, amount, logged_date, metadata } = result.data
+    const { metadata, logged_date, city_id, utility_id, ...newLogData } =
+      result.data
 
-    const newDataLog = await prisma.dataLog.create({
-      data: {
-        type_id,
-        amount,
-        metadata,
+    const newDataLog = await createNewLogFromRawData({
+      rawData: {
+        ...newLogData,
+        utility_id,
         source: 'manual',
         logged_date: moment(logged_date || new Date()).format('YYYY-MM-DD'),
         city_id: city_id || 1, // Use default for POC
       },
+      isCreateMetadata: true,
+      source: 'manually',
     })
+
+    if (metadata) {
+      const parsedMetadata = JSON.parse(metadata) as InputMetadata[]
+      await saveMetadataFromInput(newDataLog, parsedMetadata)
+    }
 
     return NextResponse.json(newDataLog, { status: 201 })
   } catch (error) {

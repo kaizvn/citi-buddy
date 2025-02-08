@@ -1,9 +1,10 @@
-import { prisma } from '@/libs'
 import { NextResponse, type NextRequest } from 'next/server'
 import { UtilityLogResponse } from '../../_utils/responseTypes'
+import UtilityService from '@/services/servers/utility'
+import DataLogService from '@/services/servers/dataLog'
 
 type DataLogQuery = {
-  type_id: number
+  utility_id: number
   city_id?: number
 }
 
@@ -19,17 +20,17 @@ export async function GET(
     const id = Number((await params).id)
 
     const query: DataLogQuery = {
-      type_id: id,
+      utility_id: id,
       ...(cityId ? { city_id: cityId } : {}),
     }
 
-    const utility = await prisma.utility.findFirst({
+    const utility = await UtilityService.findFirst({
       where: {
         id,
       },
     })
 
-    const matchedDataLogs = await prisma.dataLog.groupBy({
+    const matchedDataLogs = await DataLogService.groupBy({
       by: ['logged_date'],
       orderBy: { logged_date: 'asc' },
       where: query,

@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import * as Progress from '@radix-ui/react-progress'
 import { Upload, CheckCircle, AlertCircle } from 'lucide-react'
 import Button from '../ui/button'
-import { revertKeyValueObj } from '@/libs/utils'
+import { revertKeyValueObj } from '@/utils'
 
 type FieldMapping = {
   [key: string]: string
 }
 
-const REQUIRED_FIELDS = ['type_id', 'amount', 'logged_date', 'city_id']
+const REQUIRED_FIELDS = ['utility_id', 'amount', 'logged_date', 'city_id']
 
 async function uploadCSV(file: File, fieldMapping: FieldMapping) {
   const formData = new FormData()

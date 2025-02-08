@@ -1,7 +1,7 @@
 import { Dialog } from 'radix-ui'
 import { X } from 'lucide-react'
 import React, { useContext } from 'react'
-import { cn } from '@/libs/utils'
+import { cn } from '@/utils'
 
 type AddDataPopupProps = {
   title: string

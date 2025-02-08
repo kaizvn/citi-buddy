@@ -19,41 +19,52 @@ model City {
   population  Int
   created_at  DateTime  @default(now())
   updated_at  DateTime  @updatedAt
-  DataLog     DataLog[]
+  dataLogs    DataLog[]
 }
 
 model Utility {
-  id          Int           @id @default(autoincrement())
-  type        String
-  unit        String
-  icon        String?
-  created_at  DateTime      @default(now())
-  updated_at  DateTime      @updatedAt
-  dataLogs    DataLog[]
-  logMetaData LogMetaName[]
+  id         Int        @id @default(autoincrement())
+  type       String
+  unit       String
+  icon       String?
+  created_at DateTime   @default(now())
+  updated_at DateTime   @updatedAt
+  dataLogs   DataLog[]
+  metadata   Metadata[]
 }
 
 model DataLog {
-  id          Int      @id @default(autoincrement())
-  type_id     Int
-  utility     Utility  @relation(fields: [type_id], references: [id])
-  amount      Float
-  source      String
-  logged_date String
-  city_id     Int      @default(1)
-  city        City     @relation(fields: [city_id], references: [id])
-  metadata    String?
-  created_at  DateTime @default(now())
+  id             Int             @id @default(autoincrement())
+  utility_id     Int
+  utility        Utility         @relation(fields: [utility_id], references: [id])
+  amount         Float
+  source         String
+  logged_date    String
+  city_id        Int             @default(1)
+  city           City            @relation(fields: [city_id], references: [id])
+  raw            String?
+  created_at     DateTime        @default(now())
+  metadataValues MetadataValue[]
 }
 
-model LogMetaName {
+model Metadata {
+  id             Int             @id @default(autoincrement())
+  utility_id     Int
+  utility        Utility         @relation(fields: [utility_id], references: [id])
+  name           String
+  unit           String?
+  meta_weight    Int             @default(1)
+  description    String?
+  created_at     DateTime        @default(now())
+  updated_at     DateTime        @updatedAt
+  metadataValues MetadataValue[]
+}
+
+model MetadataValue {
   id          Int      @id @default(autoincrement())
-  utility_id  Int
-  utility     Utility  @relation(fields: [utility_id], references: [id])
-  name        String
-  unit        String?
-  meta_weight Int      @default(1)
-  description String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
+  metadata_id Int
+  log_id      Int
+  value       String
+  metadata    Metadata @relation(fields: [metadata_id], references: [id])
+  dataLog     DataLog  @relation(fields: [log_id], references: [id])
 }

@@ -1,9 +1,7 @@
 'use client'
 
 import { GetUtilityByIDResponse } from '@/app/api/_utils/responseTypes'
-
-import { fetcher } from '@/libs/utils'
-
+import { fetcher } from '@/utils'
 import useSWR from 'swr'
 
 export const useGetUtilityByID = (
