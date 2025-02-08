@@ -3,13 +3,14 @@ import UtilityChart from './chart'
 import StyledTabs, { TabItem } from '../ui/tab'
 import { AppContext } from '../context'
 import { useGetUtilityByID } from '@/services'
+import { Loading } from '../ui/loading'
 
 const UtilityDetails: React.FC<{ id: number }> = ({ id }) => {
   const { cityID } = useContext(AppContext)
-  const { utility } = useGetUtilityByID(id, cityID!)
+  const { utility, isLoading } = useGetUtilityByID(id, cityID!)
 
   const tabList: TabItem[] = useMemo(() => {
-    if (!utility || !id) {
+    if (!utility || isLoading) {
       return []
     }
 
@@ -43,14 +44,20 @@ const UtilityDetails: React.FC<{ id: number }> = ({ id }) => {
         ),
       },
     ]
-  }, [id, utility])
+  }, [utility, isLoading])
 
-  if (!id || !tabList?.length) return null
+  if (!isLoading) {
+    return (
+      <div className="full-w min-h-40">
+        <Loading size="medium" color="primary" />
+      </div>
+    )
+  }
 
   return (
     <details open className="shadow-md rounded-lg overflow-hidden">
       <summary className="px-4 py-2 font-medium cursor-pointer capitalize">
-        {utility.type} Consumption Details (10 days data)
+        {utility?.type} Consumption Details (10 days data)
       </summary>
       <div className="p-1">
         <StyledTabs tabList={tabList} />
