@@ -1,4 +1,4 @@
-type_id,city_id,amount,source,logged_date,created_at
+utility_id,city_id,amount,source,logged_date,created_at
 1,1,19.5,integration,2025-01-04,2025-01-04T00:00:00.000Z
 2,1,96.96,uploaded,2025-01-04,2025-01-04T00:00:00.000Z
 3,1,55.6,manual,2025-01-04,2025-01-04T00:00:00.000Z
