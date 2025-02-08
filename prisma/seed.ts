@@ -9,7 +9,7 @@ async function main() {
       name: 'Ho Chi Minh City',
       code: 'HCM',
       countryCode: 'VN',
-      population: 103000000,
+      population: 3500000,
       phoneCode: 84,
     },
   ]
@@ -46,7 +46,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'integration',
-      date: '2025-01-04',
+      logged_date: '2025-01-04',
       created_at: new Date('2025-01-04'),
     },
     {
@@ -55,7 +55,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'uploaded',
-      date: '2025-01-04',
+      logged_date: '2025-01-04',
       created_at: new Date('2025-01-04'),
     },
     {
@@ -64,7 +64,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'manual',
-      date: '2025-01-04',
+      logged_date: '2025-01-04',
       created_at: new Date('2025-01-04'),
     },
     {
@@ -73,7 +73,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'integration',
-      date: '2025-01-05',
+      logged_date: '2025-01-05',
       created_at: new Date('2025-01-05'),
     },
     {
@@ -82,7 +82,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'uploaded',
-      date: '2025-01-05',
+      logged_date: '2025-01-05',
       created_at: new Date('2025-01-05'),
     },
     {
@@ -91,7 +91,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'manual',
-      date: '2025-01-05',
+      logged_date: '2025-01-05',
       created_at: new Date('2025-01-05'),
     },
     {
@@ -100,7 +100,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'integration',
-      date: '2025-01-06',
+      logged_date: '2025-01-06',
       created_at: new Date('2025-01-06'),
     },
     {
@@ -109,7 +109,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'uploaded',
-      date: '2025-01-06',
+      logged_date: '2025-01-06',
       created_at: new Date('2025-01-06'),
     },
     {
@@ -118,7 +118,7 @@ async function main() {
       city_id: 1,
       amount: Number((Math.random() * 100).toFixed(2)),
       source: 'manual',
-      date: '2025-01-06',
+      logged_date: '2025-01-06',
       created_at: new Date('2025-01-06'),
     },
   ]

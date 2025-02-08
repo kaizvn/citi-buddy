@@ -1,1 +1,1 @@
-export const DEFAULT_LIMIT = 1000
+export const DEFAULT_LIMIT_ITEMS = 100

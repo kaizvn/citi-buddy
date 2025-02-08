@@ -1,4 +1,4 @@
-import prisma from '@/lib/prisma'
+import { prisma } from '@/libs'
 
 import { NextRequest, NextResponse } from 'next/server'
 import { GetCityByIDResponse } from '../../_utils/responseTypes'

@@ -23,23 +23,37 @@ model City {
 }
 
 model Utility {
-  id         Int       @id @default(autoincrement())
-  type       String
-  unit       String
-  icon       String?
-  created_at DateTime  @default(now())
-  updated_at DateTime  @updatedAt
-  dataLogs   DataLog[]
+  id          Int           @id @default(autoincrement())
+  type        String
+  unit        String
+  icon        String?
+  created_at  DateTime      @default(now())
+  updated_at  DateTime      @updatedAt
+  dataLogs    DataLog[]
+  logMetaData LogMetaName[]
 }
 
 model DataLog {
-  id         Int      @id @default(autoincrement())
-  type_id    Int
-  utility    Utility  @relation(fields: [type_id], references: [id])
-  amount     Float
-  source     String
-  date       String
-  city_id    Int      @default(1)
-  city       City     @relation(fields: [city_id], references: [id])
-  created_at DateTime @default(now())
+  id          Int      @id @default(autoincrement())
+  type_id     Int
+  utility     Utility  @relation(fields: [type_id], references: [id])
+  amount      Float
+  source      String
+  logged_date String
+  city_id     Int      @default(1)
+  city        City     @relation(fields: [city_id], references: [id])
+  metadata    String?
+  created_at  DateTime @default(now())
+}
+
+model LogMetaName {
+  id          Int      @id @default(autoincrement())
+  utility_id  Int
+  utility     Utility  @relation(fields: [utility_id], references: [id])
+  name        String
+  unit        String?
+  meta_weight Int      @default(1)
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
 }

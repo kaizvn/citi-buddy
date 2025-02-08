@@ -1,0 +1,258 @@
+[
+  {
+    "id": 1,
+    "date": "2025-01-29",
+    "amount": 276.02,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-18",
+    "amount": 177.23,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-20",
+    "amount": 802.04,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-27",
+    "amount": 11.2,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-11",
+    "amount": 247.28,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-13",
+    "amount": 119.97,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-26",
+    "amount": 903.2,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-21",
+    "amount": 522.6,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-27",
+    "amount": 687.2,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-24",
+    "amount": 291.34,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-19",
+    "amount": 454.81,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-21",
+    "amount": 623.02,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-08",
+    "amount": 536.28,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-05",
+    "amount": 543.37,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-26",
+    "amount": 395.76,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685362"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-31",
+    "amount": 489.03,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-11",
+    "amount": 591.53,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-06",
+    "amount": 536.37,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-10",
+    "amount": 385.87,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-29",
+    "amount": 510.45,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-08",
+    "amount": 868.55,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-27",
+    "amount": 85.55,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-18",
+    "amount": 794.39,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-22",
+    "amount": 149.48,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-29",
+    "amount": 682.79,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-21",
+    "amount": 507.76,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 3,
+    "date": "2025-01-03",
+    "amount": 904.76,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-24",
+    "amount": 752,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-05",
+    "amount": 549.39,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-13",
+    "amount": 430.82,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 1,
+    "date": "2025-01-19",
+    "amount": 711.88,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  },
+  {
+    "id": 2,
+    "date": "2025-01-13",
+    "amount": 608.55,
+    "city_id": 1,
+    "source": "integration",
+    "created_at": "1738949685363"
+  }
+]

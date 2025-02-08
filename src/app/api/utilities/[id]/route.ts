@@ -1,4 +1,4 @@
-import prisma from '@/lib/prisma'
+import { prisma } from '@/libs'
 import { NextResponse, type NextRequest } from 'next/server'
 import { UtilityLogResponse } from '../../_utils/responseTypes'
 
@@ -7,21 +7,20 @@ type DataLogQuery = {
   city_id?: number
 }
 
+const LIMIT_GROUPED_LOGS = 10
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const searchParams = request.nextUrl.searchParams
-    const cityId = Number(searchParams.get('city_id') ?? '1')
+    const cityId = Number(searchParams.get('city_id') ?? '1') // default 1 for POC
     const id = Number((await params).id)
 
     const query: DataLogQuery = {
       type_id: id,
-    }
-
-    if (cityId) {
-      query.city_id = cityId
+      ...(cityId ? { city_id: cityId } : {}),
     }
 
     const utility = await prisma.utility.findFirst({
@@ -31,14 +30,15 @@ export async function GET(
     })
 
     const matchedDataLogs = await prisma.dataLog.groupBy({
-      by: ['date'],
-      orderBy: { date: 'asc' },
+      by: ['logged_date'],
+      orderBy: { logged_date: 'asc' },
       where: query,
       _sum: { amount: true },
+      take: LIMIT_GROUPED_LOGS,
     })
 
     const dataLogs: UtilityLogResponse[] = matchedDataLogs.map((data) => ({
-      date: data.date,
+      logged_date: data.logged_date,
       total: Number((data._sum.amount ?? 0).toFixed(2)),
     }))
 

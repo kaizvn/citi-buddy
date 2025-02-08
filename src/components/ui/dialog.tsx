@@ -1,7 +1,7 @@
 import { Dialog } from 'radix-ui'
 import { X } from 'lucide-react'
-import React from 'react'
-import { cn } from '@/lib/utils'
+import React, { useContext } from 'react'
+import { cn } from '@/libs/utils'
 
 type AddDataPopupProps = {
   title: string
@@ -12,21 +12,28 @@ type AddDataPopupProps = {
   children: React.ReactNode
 }
 
+export const DialogContext = React.createContext<{
+  open?: boolean
+  setOpen?: (open: boolean) => void
+}>({})
+
 const StyledDialog: React.FC<AddDataPopupProps> = ({
   children,
   title,
   TriggerButton,
 }) => {
+  const { open, setOpen } = useContext(DialogContext)
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
         {React.cloneElement(TriggerButton)}
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-20 bg-black/50" />
+        <Dialog.Overlay className="fixed inset-0 bg-black/50" />
         <Dialog.Content
           className={cn(
-            'fixed z-50',
+            'z-auto fixed',
             'min-w-md max-w-lg rounded-lg p-4 md:w-full',
             'top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
             'bg-white dark:bg-gray-800',

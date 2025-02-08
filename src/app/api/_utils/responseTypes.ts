@@ -9,7 +9,7 @@ export type UtilityResponse = Utility & {
 }
 
 export type UtilityLogResponse = {
-  date: string
+  logged_date: string
   total: number
 }
 

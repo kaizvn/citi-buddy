@@ -1,16 +1,16 @@
 // Singleton pattern to avoid multiple instances of PrismaClient
 import { PrismaClient } from '@prisma/client'
 
-let prisma: PrismaClient
+let prismaInstance: PrismaClient
 
 if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient()
+  prismaInstance = new PrismaClient()
 } else {
   if (!global.prisma) {
     global.prisma = new PrismaClient()
   }
 
-  prisma = global.prisma
+  prismaInstance = global.prisma
 }
 
-export default prisma
+export default prismaInstance
