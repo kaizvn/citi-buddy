@@ -60,10 +60,10 @@ export const generateSampleData = (
   return data
 }
 
-/* todo :
- * GET datalog : JSON.parse(metadata) , merge with dataLog
- * POST datalog : JSON.stringify(dataLog) , set metadata for specific metadata key
- * upload : map columns of csv to metadata, then JSON.stringify(object metadata) and set metadata before create dataLog
- * GET: /api/dataLog?city_id=1&type_id=1 : add params to get list of metadata attribute of dataLog : JSON.parse(metadata) , merge with dataLog and return object has keys is metadata attribute
- * get : /api/metadata/?city_id=1&type_id=1 : get list of metadata attribute of dataLog by city_id and type_id
+/* TODO :
+ * []  GET datalog : JSON.parse(metadata) , merge with dataLog
+ * []  POST datalog : JSON.stringify(dataLog) , set metadata for specific metadata key
+ * [x] upload : map columns of csv to metadata, then JSON.stringify(object metadata) and set metadata before create dataLog
+ * []  GET: /api/dataLog?city_id=1&type_id=1 : add params to get list of metadata attribute of dataLog : JSON.parse(metadata) , merge with dataLog and return object has keys is metadata attribute
+ * []  get : /api/metadata/?city_id=1&type_id=1 : get list of metadata attribute of dataLog by city_id and type_id
  */

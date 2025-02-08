@@ -11,6 +11,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 Run command to start in local 
 
+Create `.env` file to connect dumb sqlite db 
+
+```
+DATABASE_URL="file:./dev.db"
+```
+
 ```bash
 # pull modules
 yarn

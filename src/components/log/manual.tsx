@@ -26,9 +26,6 @@ export function DataLogForm({ callback }: { callback?: () => void }) {
     const formData = new FormData(event.currentTarget)
     const data = Object.fromEntries(formData)
 
-    // // Add metadata to the data object
-    // data.metadata = JSON.stringify(metadata)
-
     const formattedData = {
       metadata: data.metadata ? JSON.stringify(metadata) : undefined,
       type_id: parseInt(data.type_id as string),

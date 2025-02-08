@@ -46,7 +46,7 @@ const UtilityDetails: React.FC<{ id: number }> = ({ id }) => {
     ]
   }, [utility, isLoading])
 
-  if (!isLoading) {
+  if (isLoading) {
     return (
       <div className="full-w min-h-40">
         <Loading size="medium" color="primary" />

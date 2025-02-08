@@ -17,7 +17,6 @@ export function Loading({ size = 'medium', color = 'primary' }: LoadingProps) {
     primary: 'text-primary',
     secondary: 'text-secondary',
     accent: 'text-accent',
-    // Add more color options as needed
   }
 
   return (
