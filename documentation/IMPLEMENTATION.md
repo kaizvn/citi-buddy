@@ -38,7 +38,9 @@ Come across the requirements and after having an overview the big picture while 
 
 ## The idea
 At first define the main Entities : City, Utility, DataLog.
+
 A City may have many Utility services, and each service has different DataLog's forms from different source (stream, upload, input manually). And, because data is power, so we should collect them all.
+
 To support diversity of raw data, I define two types of attributes: Primary data field and Metadata.
  - **Primary Attributes**: a minimum required data (common data) to represent any kind of Utility.
  - **Metadata**: specific attributes of each Utility. Should be updated and weight by popularity.
@@ -125,7 +127,7 @@ Basically: the relationship of objects should be:
   ![alt text](/documentation/images/queryMetadata.png)
 
  Then we should have a full data look like (not implement yet)
- ```json
+ ```js
    /* Query */
     { "GET": "api/logs/51" }
    /* Response */
@@ -141,10 +143,10 @@ Basically: the relationship of objects should be:
  ```
 
  or we can access partial metadata  (not implement yet)
- ```json
+ ```js
     /* Query */
     { "GET": "api/logs/51?metadata[]=quality" }
-    
+
    /* Response*/
     { 
       "amount": 500,
@@ -160,32 +162,37 @@ We can also calculate total of a metadata, average values or options of specific
 
 ## UI overview
   ![Dashboard](/documentation/images/ui-overview-01.png)
-
-  UI support basic tracking volume of Utilities.
-  Displaying data of 10 latest days in two mode: chart or list.
+Dashboard
+ - UI support basic tracking volume of Utilities.
+ - Displaying data of 10 latest days in two mode: chart or list.
 
 
 
 ![Import Logs](/documentation/images/ui-overview-02.png)
-  Support import data by uploading .csv or manually input.
-  Be able to map columns in `*.csv` to Primary Attributes (required fields).
+  Import DataLog
+  - Support import data by uploading .csv or manually input.
+  - Be able to map columns in `*.csv` to Primary Attributes (required fields).
  
 
 ## Benefits
  - Scalable: ready to support new City, Utility, DataLog formats.
  - Accessible: be able to access, manage, calculate each single metadata of selected Utility for analysis or report.
 
+## The mistakes
+  I was overthinking about the problem. Since implement 3 set attributes of each Utility (water supply, electricity, waste) by extended them from Base Utility is simplest implementation, but I wanted to visit hell by pick a solution to import data in the wildest way (whatever format).
 
 ## Room for improvements
-  The current sourcecode is lack of APIs that support analysis & improve usable of importing DataLog:
+  - Define Types / Interfaces more details.
 
-  - Get and map Metadata into DataLog.
-  - Function that map utility's name to utility_id.
-  - Function that map City to city_id.
+  - The current sourcecode is lack of APIs that support analysis & improve usable of importing DataLog:
+
+    - Get and map Metadata into DataLog.
+    - Function that map utility's name to utility_id.
+    - Function that map City to city_id.
   
-  Also considering to use PostgreSQL by its excellent built-in JSON support (helpful to manipulate, indexing...)
+  - Also considering to use PostgreSQL by its excellent built-in JSON support (helpful to manipulate, indexing...)
 
-  Should have some testing here...
+  - Should have some testing here...
  
   
 
